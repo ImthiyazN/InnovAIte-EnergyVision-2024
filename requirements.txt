@@ -1,0 +1,4 @@
+# This project was migrated to Node.js/Express and uses OpenAI.
+# Python requirements have been deprecated and removed.
+# If you see this file, delete it; the project no longer uses Flask or Anthropic.
+

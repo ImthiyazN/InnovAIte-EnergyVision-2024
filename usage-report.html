@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usage Report - Energy Usage Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js for Energy Graphs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+  <!-- Navigation Menu Bar -->
+  <nav class="menu-bar">
+    <div class="menu-container">
+      <div class="menu-logo">⚡ Energy Tracker</div>
+      <ul class="menu-items">
+        <li><a href="index.html" class="menu-link">Dashboard</a></li>
+        <li><a href="analytics.html" class="menu-link">Analytics</a></li>
+        <li><a href="usage-report.html" class="menu-link active">Usage Report</a></li>
+        <li><a href="#settings" class="menu-link">Settings</a></li>
+      </ul>
+      <button class="menu-toggle">☰</button>
+    </div>
+  </nav>
+
+  <div class="app-container">
+    <div class="max-width-container">
+      <section class="usage-report-section">
+        <h1 class="section-title">Energy Usage Report</h1>
+        
+        <div class="report-controls">
+          <div class="target-setter">
+            <label for="target-input">Daily Target (kWh):</label>
+            <input type="number" id="target-input" min="5" max="50" value="20" step="1">
+            <button id="set-target-btn" class="btn-primary">Set Target</button>
+          </div>
+          <div class="stats-display" id="stats-display">
+            <div class="stat-card">
+              <span class="stat-label">7-Day Average</span>
+              <span class="stat-value" id="avg-7day">0 kWh</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">30-Day Average</span>
+              <span class="stat-value" id="avg-30day">0 kWh</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Target</span>
+              <span class="stat-value" id="current-target">20 kWh</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Energy Graphs Section -->
+        <div class="report-grid">
+          <!-- Historical vs Projected -->
+          <div class="glass-panel graph-panel">
+            <h2 class="panel-title">Energy Usage Trend (30 Days)</h2>
+            <canvas id="trend-chart"></canvas>
+          </div>
+
+          <!-- Today's Hourly -->
+          <div class="glass-panel graph-panel">
+            <h2 class="panel-title">Today's Usage (Actual vs Projected)</h2>
+            <canvas id="hourly-chart"></canvas>
+          </div>
+
+          <!-- 7-Day Projection -->
+          <div class="glass-panel graph-panel">
+            <h2 class="panel-title">7-Day Forecast</h2>
+            <canvas id="forecast-chart"></canvas>
+          </div>
+
+          <!-- AI Tips Section -->
+          <div class="glass-panel tips-panel">
+            <h2 class="panel-title">AI Energy-Saving Tips</h2>
+            <div id="tips-container" class="tips-container">
+              <p class="loading">Loading tips...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rewards Section -->
+        <div class="glass-panel rewards-section">
+          <h2 class="panel-title">💝 Reward Points & Gift Cards</h2>
+          <div class="rewards-content">
+            <div class="rewards-info">
+              <div class="reward-stat">
+                <span class="reward-label">Total Earned</span>
+                <span class="reward-value" id="total-rewards">0 AED</span>
+              </div>
+              <div class="reward-stat">
+                <span class="reward-label">Monthly Achievement</span>
+                <span class="reward-value" id="monthly-achievement">--%</span>
+              </div>
+            </div>
+
+            <div class="reward-message" id="reward-message">
+              <p id="reward-text">Loading...</p>
+            </div>
+
+            <!-- Gift Card Redemption -->
+            <div class="gift-card-section">
+              <h3 class="gift-card-title">Redeem Gift Card</h3>
+              <div class="redemption-grid">
+                <div class="store-option">
+                  <input type="radio" name="store" value="Carrefour" id="store-carrefour">
+                  <label for="store-carrefour">
+                    <span class="store-name">Carrefour</span>
+                    <span class="store-icon">🛒</span>
+                  </label>
+                </div>
+                <div class="store-option">
+                  <input type="radio" name="store" value="Amazon" id="store-amazon">
+                  <label for="store-amazon">
+                    <span class="store-name">Amazon</span>
+                    <span class="store-icon">📦</span>
+                  </label>
+                </div>
+                <div class="store-option">
+                  <input type="radio" name="store" value="Noon" id="store-noon">
+                  <label for="store-noon">
+                    <span class="store-name">Noon</span>
+                    <span class="store-icon">🏪</span>
+                  </label>
+                </div>
+                <div class="store-option">
+                  <input type="radio" name="store" value="DEWA" id="store-dewa">
+                  <label for="store-dewa">
+                    <span class="store-name">DEWA Credit</span>
+                    <span class="store-icon">⚡</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="redemption-controls">
+                <input type="number" id="redeem-amount" placeholder="Amount (AED)" min="10" step="10" max="1000">
+                <button id="redeem-btn" class="btn-primary">Redeem Gift Card</button>
+              </div>
+
+              <div id="redemption-result" class="redemption-result" style="display: none;">
+                <div class="reward-code">
+                  <p class="code-label">Your Gift Card Code:</p>
+                  <p class="code-value" id="code-display"></p>
+                  <button id="copy-btn" class="btn-secondary">Copy Code</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Redeemed History -->
+        <div class="glass-panel history-panel">
+          <h2 class="panel-title">Redemption History</h2>
+          <div id="history-container" class="history-container">
+            <p class="loading">Loading history...</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Energy data updates in real-time • Last updated: <span id="current-time">10:42:35 AM</span></p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="usage-report.js"></script>
+</body>
+</html>

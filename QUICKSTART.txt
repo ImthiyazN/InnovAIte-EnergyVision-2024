@@ -1,0 +1,167 @@
+# ⚡ Energy Tracker - Quick Reference
+
+## 🎯 3-Minute Quick Start
+
+### Quick Start (No npm required)
+```bash
+cd /Users/aaquib/Developer/innovate_2026
+# (Optional) Create config.js from config.example.js and add your OpenAI key:
+# echo "window.OPENAI_API_KEY='sk-your_key'" > config.js
+# Start a simple static server (Python built-in):
+python -m http.server 8000
+```
+
+### Browser
+Open: `http://localhost:8000` then visit the pages
+
+---
+
+## 🗺️ Navigation
+
+| Page | URL | What It Does |
+|------|-----|-------------|
+| Dashboard | http://localhost:8000 | Real-time gauge & timeline |
+| Analytics | /analytics.html | Dubai map with districts |
+| Usage Report | /usage-report.html | Graphs, tips, rewards |
+
+---
+
+## 📊 Usage Report Features
+
+### Energy Graphs
+- **30-Day Trend**: Shows your usage vs target
+- **Today's Hourly**: Actual vs AI projection
+- **7-Day Forecast**: Next week prediction
+- **AI Tips**: 3-4 personalized recommendations
+
+### Target Setting
+```
+Enter number → Click "Set Target" → Track progress
+```
+
+### Rewards Earned
+```
+Less energy used → Earn points → Redeem gift card
+```
+
+### Gift Card Redemption
+1. Choose store (Carrefour/Amazon/Noon/DEWA)
+2. Enter amount
+3. Click Redeem
+4. Get code to use
+
+---
+
+## 🏆 Reward Tiers
+
+| Savings | Tier | Rate |
+|---------|------|------|
+| 2-5 kWh | Silver | 8 AED/kWh |
+| 5+ kWh | Gold | 10 AED/kWh |
+| <2 kWh | Bronze | 5 AED/kWh |
+
+---
+
+## 🔑 Key Numbers
+
+| Item | Value |
+|------|-------|
+| Frontend Port | 8000 |
+| Default Target | 20 kWh |
+| Historical Days | 30 |
+| Forecast Days | 7 |
+
+---
+
+## 🐛 Common Issues & Fixes
+
+### Frontend port used
+```bash
+# Use different port
+python -m http.server 9000
+
+# Visit http://localhost:9000
+```
+
+
+### Frontend port used
+```bash
+# Use different port
+python -m http.server 9000
+
+# Visit http://localhost:9000
+```
+
+### OpenAI API Key (client-side)
+Create a `config.js` (copy from `config.example.js`) and add:
+```javascript
+window.OPENAI_API_KEY = 'sk-your_openai_key_here';
+```
+Warning: placing API keys in client-side code is insecure — only use for local testing.
+
+### Charts blank
+- Refresh page
+- Check browser console (F12)
+- Verify API running
+
+---
+
+## 📁 Important Files
+
+| File | Purpose |
+|------|---------|
+| `config.example.js` | Example client-side config to create `config.js` |
+| `usage-report.html` | Graph page |
+| `usage-report.js` | Graph logic (now client-only) |
+| `index.html`, `analytics.html` | Frontend pages |
+
+---
+
+## 🔗 Quick Checks
+
+No backend required — data is generated locally. To check OpenAI connectivity (if you created `config.js`):
+
+```bash
+curl -s -X POST https://api.openai.com/v1/chat/completions \
+	-H "Authorization: Bearer $OPENAI_API_KEY" \
+	-H "Content-Type: application/json" \
+	-d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"hello"}]}'
+```
+
+---
+
+## 💡 Quick Tips
+
+1. **First Time**: Set target to 20 kWh in Usage Report
+2. **Check Tips**: They're personalized to your usage
+3. **Earn Rewards**: Use less than your average
+4. **Track Progress**: 7-day average shows improvement
+5. **Redeem**: Convert rewards to gift cards anytime
+
+---
+
+## 📞 Support Checklist
+
+- [ ] Both servers running (ports 5000 & 8000)?
+- [ ] .env has API key?
+- [ ] Browser can access http://localhost:8000?
+- [ ] No errors in browser console (F12)?
+- [ ] No errors in terminal?
+
+---
+
+## 🎯 Next Steps
+
+1. ✅ Get OpenAI API key from platform.openai.com/api-keys
+2. ✅ Add to .env file
+3. ✅ (Optional) Create `config.js` from `config.example.js` and add your OpenAI key
+4. ✅ Start frontend: `python -m http.server 8000`
+6. ✅ Open http://localhost:8000
+7. ✅ Go to Usage Report
+8. ✅ Set your daily target
+9. ✅ Check AI tips
+10. ✅ Watch rewards grow!
+
+---
+
+**Need help?** Check README.md in the project folder.

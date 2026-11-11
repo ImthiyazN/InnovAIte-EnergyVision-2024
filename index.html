@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Usage Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation Menu Bar -->
+  <nav class="menu-bar">
+    <div class="menu-container">
+      <div class="menu-logo">⚡ Energy Tracker</div>
+      <ul class="menu-items">
+        <li><a href="index.html" class="menu-link active">Dashboard</a></li>
+        <li><a href="analytics.html" class="menu-link">Analytics</a></li>
+        <li><a href="usage-report.html" class="menu-link">Usage Report</a></li>
+        <li><a href="#settings" class="menu-link">Settings</a></li>
+      </ul>
+      <button class="menu-toggle">☰</button>
+    </div>
+  </nav>
+
+  <div class="app-container">
+    <div class="max-width-container">
+      <header class="header">
+        <h1 class="title">Energy Usage Tracker</h1>
+        <p class="subtitle">Real-time household energy consumption</p>
+      </header>
+
+      <div class="main-grid">
+        <div class="gauge-container">
+          <div class="glass-panel">
+            <h2 class="panel-title">Current Energy Usage</h2>
+            
+            <div class="gauge-wrapper">
+              <svg class="gauge" viewBox="0 0 200 200">
+                <circle class="gauge-background" cx="100" cy="100" r="90"></circle>
+                <circle class="gauge-progress" cx="100" cy="100" r="90" id="progress-circle"></circle>
+                <defs>
+                  <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#10b981"></stop>
+                    <stop offset="100%" stop-color="#34d399"></stop>
+                  </linearGradient>
+                  <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"></feGaussianBlur>
+                    <feColorMatrix in="blur" type="matrix" values="
+                      0 0 0 0 0.0627
+                      0 0 0 0 0.7216
+                      0 0 0 0 0.5059
+                      0 0 0 1 0"></feColorMatrix>
+                    <feBlend in="SourceGraphic" in2="blur" mode="screen"></feBlend>
+                  </filter>
+                </defs>
+              </svg>
+              
+              <div class="gauge-center">
+                <span class="gauge-value" id="current-usage">4.2<span class="unit">kWh</span></span>
+                <p class="gauge-label">Now</p>
+              </div>
+            </div>
+            
+            <div class="trend-container">
+              <div class="trend-indicator down">
+                <svg class="trend-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                  <polyline points="17 18 23 18 23 12"></polyline>
+                </svg>
+                <span class="trend-text">12.4% below yesterday</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="summary-container">
+          <div class="glass-panel summary-panel">
+            <h2 class="panel-title">Daily Summary</h2>
+            
+            <div class="summary-content">
+              <div class="summary-item">
+                <div class="summary-icon-container">
+                  <svg class="summary-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 12h-5m-5 0H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2h-1a2 2 0 0 1-2-2V9a2 2 0 0 0-2-2H8a2 2 0 0 1-2-2V4"></path>
+                  </svg>
+                </div>
+                <div class="summary-text">
+                  <p class="summary-label">Total Usage</p>
+                  <p class="summary-value">32.7 kWh</p>
+                </div>
+              </div>
+              
+              <div class="summary-item">
+                <div class="summary-icon-container">
+                  <svg class="summary-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  </svg>
+                </div>
+                <div class="summary-text">
+                  <p class="summary-label">Estimated Cost</p>
+                  <p class="summary-value">$3.92</p>
+                </div>
+              </div>
+              
+              <div class="summary-item">
+                <div class="summary-icon-container">
+                  <svg class="summary-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div class="summary-text">
+                  <p class="summary-label">Carbon Footprint</p>
+                  <p class="summary-value">14.7 kg</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="insight-container">
+              <p class="insight-text">Great job! Your energy consumption is below average today</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="glass-panel">
+          <h2 class="panel-title">Today's Usage</h2>
+          
+          <div class="timeline-wrapper">
+            <div class="timeline">
+              <!-- Hourly bars will be generated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>Energy data updates in real-time • Last updated: <span id="current-time">10:42:35 AM</span></p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
